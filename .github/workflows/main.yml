@@ -30,13 +30,14 @@ jobs:
           rm ping-viewer/404.html # Page is broken
 
       - name: Htmlproofer
-        uses: athackst/htmlproofer-action@v0.2.0
-        if: false # Waiting for https://github.com/athackst/htmlproofer-action/issues/55 and https://github.com/athackst/htmlproofer-action/issues/54
+        uses: athackst/htmlproofer-action@master
         with:
           directory: "."
-          empty_alt_ignore: true
+          missing_alt_ignore: true
           ignore_urls: |
             https://fonts.gstatic.com
+          ignore_files: |
+            ./ping-viewer/404.html
 
       - name: Deploy documentation
         if: github.ref == 'refs/heads/docs'
